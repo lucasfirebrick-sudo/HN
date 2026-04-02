@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>海南国际商品合作入口 | Hainan Market Entry Partner</title>
+  <style>
+    :root {
+      --bg: #081226;
+      --bg-2: #10203f;
+      --card: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #f8fbff;
+      --muted: #c6d2e4;
+      --primary: #2563eb;
+      --primary-2: #60a5fa;
+      --green: #22c55e;
+      --section: #ffffff;
+      --section-text: #111827;
+      --section-muted: #4b5563;
+      --soft: #f5f8fc;
+      --line: rgba(15,23,42,0.08);
+      --shadow: 0 18px 50px rgba(15,23,42,0.14);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 48%, #18305e 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(8,18,38,0.78);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 12px 26px rgba(37,99,235,0.35);
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255,255,255,0.07);
+      padding: 6px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: .2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(59,130,246,.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .hero { padding: 72px 0 58px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+      color: #d7e6ff;
+      background: rgba(96,165,250,0.12);
+      border: 1px solid rgba(96,165,250,0.18);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.06;
+      letter-spacing: -1.3px;
+    }
+
+    .hero-lead {
+      margin: 0 0 14px;
+      font-size: clamp(17px, 2vw, 21px);
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .hero-sub {
+      margin: 0 0 28px;
+      color: #e6eefc;
+      font-size: 16px;
+      max-width: 760px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .mini-card span { color: var(--muted); font-size: 14px; }
+
+    .hero-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 20px 56px rgba(0,0,0,.18);
+    }
+
+    .panel-title { font-size: 18px; font-weight: 800; }
+    .panel-sub { color: var(--muted); font-size: 14px; }
+
+    .steps { display: grid; gap: 12px; }
+    .step {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(34,197,94,.14);
+      color: #d2ffe2;
+      font-weight: 800;
+    }
+
+    .step h4 { margin: 0 0 4px; font-size: 15px; }
+    .step p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .section {
+      background: var(--section);
+      color: var(--section-text);
+      border-top-left-radius: 38px;
+      border-top-right-radius: 38px;
+      margin-top: 22px;
+      padding: 70px 0;
+    }
+
+    .section.alt { background: var(--soft); border-radius: 0; margin-top: 0; }
+
+    .section-head { max-width: 780px; margin-bottom: 28px; }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -.8px;
+    }
+
+    .section-desc {
+      margin: 0;
+      color: var(--section-muted);
+      font-size: 17px;
+    }
+
+    .grid-4, .grid-3, .grid-2 {
+      display: grid;
+      gap: 18px;
+    }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+
+    .card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0; color: var(--section-muted); font-size: 15px; }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(96,165,250,.18));
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .why-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .why-main {
+      background: linear-gradient(135deg, #eff6ff, #f8fbff);
+      border: 1px solid rgba(59,130,246,.12);
+    }
+
+    .why-main strong { display: block; margin-bottom: 10px; font-size: 18px; }
+    .list { margin: 0; padding-left: 18px; color: var(--section-muted); }
+    .list li { margin: 6px 0; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #1e3a8a;
+      border: 1px solid rgba(59,130,246,0.08);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .phase {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .phase-tag {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary);
+      background: #eff6ff;
+      border-radius: 16px;
+      padding: 12px 8px;
+    }
+
+    .phase h3 { margin: 0 0 8px; font-size: 18px; }
+    .phase p { margin: 0; color: var(--section-muted); }
+
+    .contact-box {
+      background: linear-gradient(135deg, #0f172a, #172554);
+      color: #fff;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 22px 60px rgba(15,23,42,.24);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .contact-box p { color: #d8e1f3; margin: 0 0 16px; }
+    .contact-cards { display: grid; gap: 12px; }
+
+    .contact-item {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .contact-label {
+      font-size: 12px;
+      color: #b9c7e6;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+
+    .contact-value { font-size: 16px; font-weight: 700; word-break: break-word; }
+    .footer { padding: 24px 0 40px; color: rgba(255,255,255,.72); font-size: 13px; text-align: center; }
+
+    [data-lang-content] { display: none; }
+    [data-lang-content].active { display: block; }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .contact-box,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .why-box { grid-template-columns: 1fr 1fr; }
+      .hero-points { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner { flex-wrap: wrap; }
+      .nav-links { display: none; }
+      .hero { padding-top: 42px; }
+      .hero-grid,
+      .contact-box,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .why-box { grid-template-columns: 1fr; }
+      .phase { grid-template-columns: 1fr; }
+      .phase-tag { text-align: left; }
+      .section { padding: 54px 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-badge">海</div>
+        <span data-lang-content="zh" class="active">海南国际商品合作入口</span>
+        <span data-lang-content="en">Hainan Market Entry Partner</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about" data-lang-content="zh" class="active">我们在做什么</a>
+        <a href="#about" data-lang-content="en">What We Do</a>
+        <a href="#services" data-lang-content="zh" class="active">合作内容</a>
+        <a href="#services" data-lang-content="en">Services</a>
+        <a href="#products" data-lang-content="zh" class="active">商品方向</a>
+        <a href="#products" data-lang-content="en">Product Focus</a>
+        <a href="#contact" data-lang-content="zh" class="active">联系合作</a>
+        <a href="#contact" data-lang-content="en">Contact</a>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="zh">中文</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a class="btn btn-primary" href="#contact" data-lang-content="zh" class="active">立即联系</a>
+        <a class="btn btn-primary" href="#contact" data-lang-content="en">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker" data-lang-content="zh" class="active">海南 · 展会后合作入口 · 小范围测试与试销</div>
+        <div class="kicker" data-lang-content="en">Hainan · Post-Expo Cooperation · Pilot Testing & Trial Sales</div>
+
+        <h1 data-lang-content="zh" class="active">让海外商品先在海南跑出第一批市场结果</h1>
+        <h1 data-lang-content="en">Help overseas products gain their first real market traction in Hainan</h1>
+
+        <p class="hero-lead" data-lang-content="zh" class="active">帮助品牌方、商品方和供货方，先在海南完成小范围测试、试销和本地渠道落地。</p>
+        <p class="hero-lead" data-lang-content="en">We help brands, suppliers and product owners run pilot testing, trial sales and local channel entry in Hainan before scaling further.</p>
+
+        <p class="hero-sub" data-lang-content="zh" class="active">先把商品跑进海南、跑出反馈，再决定值不值得继续放大。</p>
+        <p class="hero-sub" data-lang-content="en">Enter Hainan first, validate with real feedback, then decide whether the product deserves larger-scale expansion.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact" data-lang-content="zh" class="active">预约交流</a>
+          <a class="btn btn-primary" href="#contact" data-lang-content="en">Book a Meeting</a>
+          <a class="btn btn-secondary" href="#services" data-lang-content="zh" class="active">查看合作方式</a>
+          <a class="btn btn-secondary" href="#services" data-lang-content="en">View Services</a>
+        </div>
+
+        <div class="hero-points">
+          <div class="mini-card">
+            <strong data-lang-content="zh" class="active">先测试</strong>
+            <strong data-lang-content="en">Test First</strong>
+            <span data-lang-content="zh" class="active">先看商品在海南卖不卖得动、适合什么场景。</span>
+            <span data-lang-content="en">Validate demand, positioning and scene fit before going big.</span>
+          </div>
+          <div class="mini-card">
+            <strong data-lang-content="zh" class="active">先试销</strong>
+            <strong data-lang-content="en">Pilot Sales</strong>
+            <span data-lang-content="zh" class="active">通过轻量化场景，完成首轮真实销售验证。</span>
+            <span data-lang-content="en">Run real trial sales through lightweight local channels.</span>
+          </div>
+          <div class="mini-card">
+            <strong data-lang-content="zh" class="active">再放大</strong>
+            <strong data-lang-content="en">Scale Later</strong>
+            <span data-lang-content="zh" class="active">有结果，再继续渠道合作、复购承接和后续放大。</span>
+            <span data-lang-content="en">Scale only after real data, not before it.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div>
+          <div class="panel-title" data-lang-content="zh" class="active">更像一条商业路径，不是空泛概念</div>
+          <div class="panel-title" data-lang-content="en">A practical business path, not just a concept</div>
+          <div class="panel-sub" data-lang-content="zh" class="active">我们现在更适合先把第一步跑出来，而不是一开始就做重投入。</div>
+          <div class="panel-sub" data-lang-content="en">At this stage, the priority is to prove the first step works — not to overbuild too early.</div>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h4 data-lang-content="zh" class="active">首轮商品测试</h4>
+              <h4 data-lang-content="en">Initial Product Validation</h4>
+              <p data-lang-content="zh" class="active">先确认商品是否适合海南市场，哪些品类、价格带和场景更顺。</p>
+              <p data-lang-content="en">Identify which products, price points and retail scenes fit Hainan best.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h4 data-lang-content="zh" class="active">试销与渠道落地</h4>
+              <h4 data-lang-content="en">Trial Sales & Local Channel Entry</h4>
+              <p data-lang-content="zh" class="active">通过轻量化试销场景，让商品先在本地跑出反馈和合作结果。</p>
+              <p data-lang-content="en">Use lightweight pilot channels to generate the first local sales signals.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h4 data-lang-content="zh" class="active">再决定是否放大</h4>
+              <h4 data-lang-content="en">Scale Based on Results</h4>
+              <p data-lang-content="zh" class="active">跑得动，再继续扩渠道、接线上、谈后续合作，不盲目重投入。</p>
+              <p data-lang-content="en">Expand only when the numbers support it: channels, repeat purchase and next-stage cooperation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <section id="about">
+        <div class="section-head">
+          <div class="eyebrow">What We Do</div>
+          <h2 data-lang-content="zh" class="active">我们现在专注做一件事</h2>
+          <h2 data-lang-content="en">What We Focus On Right Now</h2>
+          <p class="section-desc" data-lang-content="zh" class="active">帮助海外品牌和特色商品，先在海南完成第一步落地。不是一开始就铺很大，而是先测试、先试销、先看结果。</p>
+          <p class="section-desc" data-lang-content="en">We help overseas brands and specialty products take the first practical step in Hainan — test first, sell first, learn first, then scale.</p>
+        </div>
+        <div class="why-box">
+          <div class="card why-main">
+            <strong data-lang-content="zh" class="active">很多商品不是没有机会，而是缺少第一步。</strong>
+            <strong data-lang-content="en">Many products do not fail because they lack potential — they fail because no one runs the first step properly.</strong>
+            <p data-lang-content="zh" class="active">缺一个地方先试，缺一个场景先卖，缺一个结果先看。我们想做的，就是把这第一步跑出来。</p>
+            <p data-lang-content="en">They need a first market, a first retail scene, and a first set of real results. That is exactly where we come in.</p>
+          </div>
+          <div class="card">
+            <h3 data-lang-content="zh" class="active">现阶段的合作逻辑</h3>
+            <h3 data-lang-content="en">How We Work at This Stage</h3>
+            <ul class="list" data-lang-content="zh" class="active">
+              <li>先进入海南，完成首轮小范围测试</li>
+              <li>先跑出商品反馈和销售表现</li>
+              <li>先找到适合的本地渠道与场景</li>
+              <li>再决定后面是否继续放大</li>
+            </ul>
+            <ul class="list" data-lang-content="en">
+              <li>Enter Hainan with a controlled pilot</li>
+              <li>Generate the first real customer feedback and sales data</li>
+              <li>Identify the right local scenes and channels</li>
+              <li>Decide on larger expansion only after proof</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section class="section alt" id="services">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Services</div>
+        <h2 data-lang-content="zh" class="active">合作内容</h2>
+        <h2 data-lang-content="en">What We Can Help You Do</h2>
+        <p class="section-desc" data-lang-content="zh" class="active">不是空谈进入海南，而是先把商品跑进来、卖出去、拿到反馈。</p>
+        <p class="section-desc" data-lang-content="en">Not just market-entry language — real products, real trial sales, real feedback.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <div class="icon">测</div>
+          <h3 data-lang-content="zh" class="active">商品测试</h3>
+          <h3 data-lang-content="en">Product Validation</h3>
+          <p data-lang-content="zh" class="active">帮助商品先进入海南市场，完成首轮小范围验证，先看有没有市场反应。</p>
+          <p data-lang-content="en">Bring products into Hainan for an initial market test and verify whether there is real demand.</p>
+        </div>
+        <div class="card">
+          <div class="icon">销</div>
+          <h3 data-lang-content="zh" class="active">试销落地</h3>
+          <h3 data-lang-content="en">Trial Sales</h3>
+          <p data-lang-content="zh" class="active">通过轻量化场景完成首轮试销，先看真实销售反馈，而不是先讲大规模铺货。</p>
+          <p data-lang-content="en">Run pilot sales through lightweight channels before committing to large-scale rollout.</p>
+        </div>
+        <div class="card">
+          <div class="icon">渠</div>
+          <h3 data-lang-content="zh" class="active">渠道对接</h3>
+          <h3 data-lang-content="en">Channel Matching</h3>
+          <p data-lang-content="zh" class="active">对接本地零售、活动场景和合作资源，帮助商品找到第一批落地渠道。</p>
+          <p data-lang-content="en">Match products with suitable local retail scenes, events and initial distribution partners.</p>
+        </div>
+        <div class="card">
+          <div class="icon">数</div>
+          <h3 data-lang-content="zh" class="active">市场反馈</h3>
+          <h3 data-lang-content="en">Market Feedback</h3>
+          <p data-lang-content="zh" class="active">整理首轮销售表现、用户偏好和合作结果，为下一步判断提供依据。</p>
+          <p data-lang-content="en">Turn early sales performance and customer feedback into actionable next-step decisions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Why Hainan</div>
+        <h2 data-lang-content="zh" class="active">为什么先从海南开始</h2>
+        <h2 data-lang-content="en">Why Start in Hainan</h2>
+        <p class="section-desc" data-lang-content="zh" class="active">海南适合做国际商品进入市场前的第一站。这里有本地消费，也有旅游消费，场景相对集中，适合先做小范围测试。</p>
+        <p class="section-desc" data-lang-content="en">Hainan is a strong first-stop market for overseas products: local consumption, tourism-driven demand, and concentrated real-world testing scenes.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-lang-content="zh" class="active">先做小范围测试</h3>
+          <h3 data-lang-content="en">Pilot Before Expansion</h3>
+          <p data-lang-content="zh" class="active">先看商品在真实场景里卖不卖得动，再决定要不要继续投入。</p>
+          <p data-lang-content="en">Use Hainan to test whether a product works in the market before increasing investment.</p>
+        </div>
+        <div class="card">
+          <h3 data-lang-content="zh" class="active">先跑市场反馈</h3>
+          <h3 data-lang-content="en">Real Market Feedback</h3>
+          <p data-lang-content="zh" class="active">先知道什么商品适合海南、什么价格带更顺、什么场景更有机会。</p>
+          <p data-lang-content="en">Learn which products, price ranges and sales scenes actually perform.</p>
+        </div>
+        <div class="card">
+          <h3 data-lang-content="zh" class="active">先建立合作基础</h3>
+          <h3 data-lang-content="en">Build the First Local Base</h3>
+          <p data-lang-content="zh" class="active">先把商品、渠道和本地合作关系跑起来，再谈后面怎么继续放大。</p>
+          <p data-lang-content="en">Establish products, channels and local cooperation first, then consider broader scaling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="products">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Product Focus</div>
+        <h2 data-lang-content="zh" class="active">当前更关注的商品方向</h2>
+        <h2 data-lang-content="en">Current Product Focus</h2>
+        <p class="section-desc" data-lang-content="zh" class="active">现阶段更适合先做试销和首轮验证的方向。</p>
+        <p class="section-desc" data-lang-content="en">Categories best suited for early-stage trial sales and first-round market validation.</p>
+      </div>
+      <div class="chips">
+        <div class="chip" data-lang-content="zh" class="active">日用消费品</div>
+        <div class="chip" data-lang-content="en">Daily Consumer Goods</div>
+        <div class="chip" data-lang-content="zh" class="active">生活方式类商品</div>
+        <div class="chip" data-lang-content="en">Lifestyle Products</div>
+        <div class="chip" data-lang-content="zh" class="active">零食饮料</div>
+        <div class="chip" data-lang-content="en">Snacks & Beverages</div>
+        <div class="chip" data-lang-content="zh" class="active">特色食品</div>
+        <div class="chip" data-lang-content="en">Specialty Food</div>
+        <div class="chip" data-lang-content="zh" class="active">适合试销的新品</div>
+        <div class="chip" data-lang-content="en">Launch-Ready New Products</div>
+        <div class="chip" data-lang-content="zh" class="active">适合本地零售场景的轻量级商品</div>
+        <div class="chip" data-lang-content="en">Lightweight Products Suitable for Local Retail Scenes</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Partners</div>
+        <h2 data-lang-content="zh" class="active">这些合作方更适合找我们</h2>
+        <h2 data-lang-content="en">Who Should Contact Us</h2>
+        <p class="section-desc" data-lang-content="zh" class="active">如果你希望先在海南试一步，而不是一开始就重投入，这种合作更适合现在谈。</p>
+        <p class="section-desc" data-lang-content="en">If you want to test Hainan first instead of committing to a full launch from day one, this is the right time to talk.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3 data-lang-content="zh" class="active">适合联系的合作方</h3>
+          <h3 data-lang-content="en">Ideal Partners</h3>
+          <ul class="list" data-lang-content="zh" class="active">
+            <li>想先进入海南市场的海外品牌</li>
+            <li>有特色商品的供货方</li>
+            <li>希望先做小范围试销的商品方</li>
+            <li>想了解海南本地落地方式的合作方</li>
+            <li>希望在展会之后继续推进海南市场的团队</li>
+          </ul>
+          <ul class="list" data-lang-content="en">
+            <li>Overseas brands exploring Hainan as a first market</li>
+            <li>Suppliers with distinctive products</li>
+            <li>Product owners seeking controlled pilot sales</li>
+            <li>Teams evaluating local market-entry options</li>
+            <li>Exhibitors looking for post-expo landing opportunities</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 data-lang-content="zh" class="active">当前开放的合作方式</h3>
+          <h3 data-lang-content="en">Current Cooperation Formats</h3>
+          <ul class="list" data-lang-content="zh" class="active">
+            <li>首轮商品测试合作</li>
+            <li>试销与渠道合作</li>
+            <li>市场沟通与落地交流</li>
+          </ul>
+          <ul class="list" data-lang-content="en">
+            <li>Initial product testing partnerships</li>
+            <li>Trial sales and channel cooperation</li>
+            <li>Market-entry discussion and local landing support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Stage</div>
+        <h2 data-lang-content="zh" class="active">我们现在处于什么阶段</h2>
+        <h2 data-lang-content="en">Our Current Stage</h2>
+        <p class="section-desc" data-lang-content="zh" class="active">现阶段更看重长期合作、真实反馈和后续放大空间。</p>
+        <p class="section-desc" data-lang-content="en">At this stage, we care most about real feedback, practical cooperation and future scalability.</p>
+      </div>
+      <div class="grid-3">
+        <div class="phase">
+          <div class="phase-tag" data-lang-content="zh" class="active">现在</div>
+          <div class="phase-tag" data-lang-content="en">Now</div>
+          <div>
+            <h3 data-lang-content="zh" class="active">先把第一步跑出来</h3>
+            <h3 data-lang-content="en">Prove the First Step Works</h3>
+            <p data-lang-content="zh" class="active">先和合适的品牌、商品方合作，把首轮测试、试销和本地渠道验证做出来。</p>
+            <p data-lang-content="en">Work with the right products and brands to complete the first round of local testing, trial sales and channel validation.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-tag" data-lang-content="zh" class="active">接着</div>
+          <div class="phase-tag" data-lang-content="en">Next</div>
+          <div>
+            <h3 data-lang-content="zh" class="active">看商品和场景结果</h3>
+            <h3 data-lang-content="en">Read the Product and Scene Results</h3>
+            <p data-lang-content="zh" class="active">哪些商品跑得动，哪些场景更顺，哪些合作方式更值得继续推进。</p>
+            <p data-lang-content="en">Identify which products work, which retail scenes fit, and which cooperation model deserves deeper follow-up.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-tag" data-lang-content="zh" class="active">之后</div>
+          <div class="phase-tag" data-lang-content="en">Later</div>
+          <div>
+            <h3 data-lang-content="zh" class="active">再谈继续放大</h3>
+            <h3 data-lang-content="en">Scale Only After Proof</h3>
+            <p data-lang-content="zh" class="active">有结果，再谈更深的渠道合作、线上承接或后续本地化布局。</p>
+            <p data-lang-content="en">Only after proof do we move into deeper channel expansion, online conversion or broader localization plans.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <div>
+          <div class="eyebrow" style="color:#93c5fd; margin-bottom:12px;">Contact</div>
+          <h2 style="color:#fff; margin-bottom:12px;" data-lang-content="zh" class="active">欢迎联系交流</h2>
+          <h2 style="color:#fff; margin-bottom:12px;" data-lang-content="en">Let’s Talk</h2>
+          <p data-lang-content="zh" class="active">如果你有商品想进入海南，如果你想先做一轮市场测试，如果你想在展会之后继续推进本地落地，欢迎直接联系。</p>
+          <p data-lang-content="en">If you want to bring products into Hainan, run a first market pilot, or continue your post-expo local landing conversation, feel free to contact us.</p>
+          <a class="btn btn-primary" href="mailto:hello@example.com" data-lang-content="zh" class="active">立即发邮件</a>
+          <a class="btn btn-primary" href="mailto:hello@example.com" data-lang-content="en">Email Us</a>
+        </div>
+        <div class="contact-cards">
+          <div class="contact-item">
+            <div class="contact-label">WeChat</div>
+            <div class="contact-value">13134936365</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">+86 13134936365</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">Lucasfirebrick@gmail.com</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer" data-lang-content="zh" class="active">欢迎展会期间或会后预约交流</div>
+      <div class="footer" data-lang-content="en">Meetings are welcome during or after the exhibition</div>
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll('[data-lang]');
+    const zhNodes = document.querySelectorAll('[data-lang-content="zh"]');
+    const enNodes = document.querySelectorAll('[data-lang-content="en"]');
+
+    function setLang(lang) {
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+      zhNodes.forEach(node => node.classList.toggle('active', lang === 'zh'));
+      enNodes.forEach(node => node.classList.toggle('active', lang === 'en'));
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    setLang('zh');
+  </script>
+</body>
+</html>
